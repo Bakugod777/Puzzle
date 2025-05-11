@@ -1,0 +1,815 @@
+/* Variables globales con paleta de colores ampliada */
+:root {
+    /* Colores principales */
+    --primary-color: #4361ee;
+    --primary-light: #4f70fa;
+    --primary-dark: #3a56d4;
+    --secondary-color: #7209b7;
+    --secondary-light: #8526c9;
+    --secondary-dark: #5e0092;
+    --accent-color: #f72585;
+    --accent-light: #ff4a9e;
+    --accent-dark: #d3155f;
+    
+    /* Colores de fondo y texto */
+    --background-color: #f8f9fa;
+    --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --card-bg: #ffffff;
+    --text-color: #2b2d42;
+    --text-light: #6c757d;
+    
+    /* Colores de componentes */
+    --slot-bg: #e9ecef;
+    --slot-hover: #dee2e6;
+    --board-bg: #4a4e69;
+    --container-bg: #22223b;
+    --success-color: #4cc9f0;
+    --success-gradient: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    
+    /* Sombras */
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.12);
+    --shadow-inner: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    
+    /* Transiciones y animaciones */
+    --transition-fast: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Bordes redondeados */
+    --border-radius-sm: 6px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+    
+    /* Espaciado */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    --background-color: #f8f9fa;
+    --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    
+    /* Nuevas variables para patrones y efectos de fondo */
+    --background-pattern: radial-gradient(circle at 25% 30%, rgba(67, 97, 238, 0.07) 0%, transparent 10%),
+                        radial-gradient(circle at 80% 10%, rgba(114, 9, 183, 0.05) 0%, transparent 15%),
+                        radial-gradient(circle at 10% 70%, rgba(247, 37, 133, 0.06) 0%, transparent 12%);
+    
+    /* Variables para animación de fondo */
+    --floating-bubble-1: radial-gradient(circle at 50% 50%, rgba(67, 97, 238, 0.1) 0%, transparent 60%);
+    --floating-bubble-2: radial-gradient(circle at 50% 50%, rgba(114, 9, 183, 0.08) 0%, transparent 50%);
+    --floating-bubble-3: radial-gradient(circle at 50% 50%, rgba(247, 37, 133, 0.07) 0%, transparent 55%);
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--background-color);
+    background-image: var(--background-gradient);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    transition: var(--transition);
+    /* Nuevos estilos de fondo */
+    position: relative;
+    overflow-x: hidden;
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image: var(--background-pattern);
+    opacity: 1;
+    pointer-events: none;
+}
+.background-element {
+    position: fixed;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.bubble-1 {
+    width: 40vw;
+    height: 40vw;
+    background-image: var(--floating-bubble-1);
+    top: 15%;
+    left: -15%;
+    animation: float-slow 20s infinite alternate ease-in-out;
+}
+
+.bubble-2 {
+    width: 30vw;
+    height: 30vw;
+    background-image: var(--floating-bubble-2);
+    bottom: 5%;
+    right: -5%;
+    animation: float-slow 18s infinite alternate-reverse ease-in-out;
+}
+
+.bubble-3 {
+    width: 25vw;
+    height: 25vw;
+    background-image: var(--floating-bubble-3);
+    bottom: 30%;
+    left: 60%;
+    animation: float-slow 15s infinite alternate ease-in-out;
+}
+h1 {
+    color: var(--secondary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.5px;
+    text-align: center;
+    position: relative;
+    transition: var(--transition);
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Elementos de la interfaz */
+.timer {
+    background: var(--card-bg);
+    color: var(--accent-color);
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 0.4em 1em;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 1.2em;
+    min-width: 150px;
+    text-align: center;
+    background-image: linear-gradient(to right, #efefef, #ffffff);
+    border-left: 4px solid var(--accent-color);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.timer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%);
+    background-size: 10px 10px;
+    opacity: 0.5;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Selector de dificultad */
+.difficulty-selector {
+    margin-bottom: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    transition: var(--transition);
+}
+
+.difficulty-selector label {
+    font-weight: 600;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    border: 2px solid #dee2e6;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23212529' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 12px;
+    padding-right: 35px;
+    box-shadow: var(--shadow-sm);
+}
+
+select:hover, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Controles */
+.controls {
+    margin-bottom: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 520px;
+    transition: var(--transition);
+}
+
+button {
+    padding: 12px 22px;
+    border-radius: var(--border-radius-sm);
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-grow: 1;
+    min-width: 120px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+button:hover::after {
+    opacity: 1;
+}
+
+#start-btn {
+    background-color: var(--primary-color);
+    background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+}
+
+#reset-btn {
+    background-color: var(--secondary-color);
+    background-image: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+}
+
+#upload-btn {
+    background-color: var(--accent-color);
+    background-image: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    filter: brightness(1.05);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+    filter: brightness(0.95);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.25);
+}
+
+/* Ripple effect para botones */
+button .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+@keyframes float-slow {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(20px, -20px);
+    }
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    width: 100%;
+    max-width: 950px;
+    align-items: center;
+    margin-bottom: 2em;
+    transition: var(--transition);
+}
+
+/* Tablero del puzzle */
+.puzzle-board {
+    display: grid;
+    gap: 3px;
+    background: var(--board-bg);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 95%;
+    max-width: 450px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.puzzle-board::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.puzzle-piece-slot {
+    background: var(--slot-bg);
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: var(--shadow-inner);
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.puzzle-piece-slot:empty:hover {
+    background: var(--slot-hover);
+}
+
+/* Highlight para slots vacíos cuando se arrastra una pieza */
+.puzzle-piece-slot:empty.highlight {
+    background-color: rgba(76, 201, 240, 0.3);
+    box-shadow: inset 0 0 0 2px var(--success-color);
+}
+
+/* Contenedor de piezas */
+.pieces-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 95%;
+    max-width: 450px;
+    padding: var(--spacing-md);
+    background: var(--container-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    justify-content: center;
+    margin: 0 auto;
+    min-height: 120px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.pieces-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Piezas del puzzle */
+.puzzle-piece {
+    cursor: grab;
+    transition: var(--transition-fast);
+    user-select: none;
+    aspect-ratio: 1/1;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    transform-origin: center;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+}
+
+.puzzle-piece::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.puzzle-piece:hover {
+    transform: scale(1.05) translateY(-2px);
+    z-index: 2;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.puzzle-piece:active {
+    cursor: grabbing;
+    transform: scale(1.08);
+    z-index: 3;
+}
+
+.puzzle-piece.dragging {
+    opacity: 0.9;
+    z-index: 10;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+    animation: float 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1.05);
+    }
+    100% {
+        transform: translateY(-4px) scale(1.05);
+    }
+}
+
+.puzzle-image {
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--border-radius-sm) - 1px);
+    pointer-events: none;
+    background-size: cover;
+    transition: var(--transition);
+}
+
+/* Mensaje de éxito */
+.message {
+    margin-top: 1.5em;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    background: var(--success-color);
+    background-image: var(--success-gradient);
+    color: white;
+    display: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+    width: 95%;
+    max-width: 450px;
+    text-align: center;
+    animation: pulse 2s infinite, slideIn 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 201, 240, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 201, 240, 0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Confeti para celebración */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f72585;
+    opacity: 0;
+    animation: confetti 5s ease-in-out infinite;
+    z-index: 1000;
+}
+
+.confetti:nth-child(2n) {
+    background-color: #4361ee;
+}
+
+.confetti:nth-child(3n) {
+    background-color: #4cc9f0;
+}
+
+.confetti:nth-child(4n) {
+    background-color: #7209b7;
+}
+
+@keyframes confetti {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Estilos específicos para diferentes tamaños de puzzle */
+.size-3x3 .puzzle-piece-slot,
+.size-3x3 .puzzle-piece {
+    border-radius: 8px;
+}
+
+.size-4x4 .puzzle-piece-slot,
+.size-4x4 .puzzle-piece {
+    border-radius: 6px;
+}
+
+.size-5x5 .puzzle-piece-slot,
+.size-5x5 .puzzle-piece {
+    border-radius: 5px;
+}
+
+.size-6x6, .size-7x7 {
+    gap: 2px;
+}
+
+.size-6x6 .puzzle-piece-slot,
+.size-6x6 .puzzle-piece,
+.size-7x7 .puzzle-piece-slot,
+.size-7x7 .puzzle-piece {
+    border-radius: 4px;
+}
+
+/* Animaciones para el inicio del juego */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.puzzle-board, .pieces-container {
+    animation: scaleIn 0.5s ease-out;
+}
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 1100px;
+    }
+    
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    .timer {
+        font-size: 2.4rem;
+        min-width: 180px;
+    }
+    
+    .message {
+        font-size: 1.4rem;
+    }
+    
+    button {
+        min-width: 150px;
+    }
+    
+    /* Efectos hover más sutiles en escritorio */
+    .puzzle-piece:hover {
+        transform: scale(1.03) translateY(-1px);
+    }
+}
+
+/* Estilos específicos para pantallas pequeñas */
+@media (max-width: 480px) {
+    :root {
+        --spacing-md: 12px;
+        --spacing-lg: 18px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h1::after {
+        width: 40px;
+    }
+    
+    .timer {
+        font-size: 1.8rem;
+        padding: 0.3em 0.8em;
+    }
+    
+    button {
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .puzzle-board, .pieces-container {
+        gap: 2px;
+        padding: 10px;
+    }
+    
+    .size-5x5 .puzzle-piece-slot,
+    .size-5x5 .puzzle-piece,
+    .size-6x6 .puzzle-piece-slot,
+    .size-6x6 .puzzle-piece,
+    .size-7x7 .puzzle-piece-slot,
+    .size-7x7 .puzzle-piece {
+        border-radius: 3px;
+    }
+    
+    .size-6x6, .size-7x7 {
+        gap: 1px;
+        padding: 8px;
+    }
+    
+    /* Ajustar animaciones para móviles */
+    .puzzle-piece:hover {
+        transform: none;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .puzzle-piece:hover, button:hover {
+        transform: none;
+    }
+}
+
+/* Estilos para dispositivos con pantalla táctil */
+@media (hover: none) {
+    .puzzle-piece:hover {
+        transform: none;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+    
+    button:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+    }
+}
+
+/* Tema claro/oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #121212;
+        --background-gradient: linear-gradient(135deg, #121212 0%, #2d2d2d 100%);
+        
+        /* Patrones actualizados para modo oscuro */
+        --background-pattern: radial-gradient(circle at 25% 30%, rgba(77, 166, 255, 0.05) 0%, transparent 12%),
+                            radial-gradient(circle at 80% 10%, rgba(170, 75, 220, 0.04) 0%, transparent 15%),
+                            radial-gradient(circle at 10% 70%, rgba(255, 100, 150, 0.05) 0%, transparent 12%);
+        
+        /* Burbujas actualizadas para modo oscuro - más sutiles */
+        --floating-bubble-1: radial-gradient(circle at 50% 50%, rgba(77, 166, 255, 0.08) 0%, transparent 60%);
+        --floating-bubble-2: radial-gradient(circle at 50% 50%, rgba(170, 75, 220, 0.06) 0%, transparent 50%);
+        --floating-bubble-3: radial-gradient(circle at 50% 50%, rgba(255, 100, 150, 0.05) 0%, transparent 55%);
+    }
+    
+    .background-element {
+        opacity: 0.2; /* Menos opacidad en modo oscuro para no distraer */
+    }
+
+    
+    h1 {
+        color: #8a2be2;
+    }
+    
+    .timer {
+        background-image: linear-gradient(to right, #2a2a2a, #303030);
+        color: var(--accent-light);
+    }
+    
+    select {
+        border-color: #444;
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e0e0e0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    }
+    
+    .puzzle-piece-slot:empty.highlight {
+        background-color: rgba(76, 201, 240, 0.2);
+    }
+    
+    button:focus {
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.4);
+    }
+    
+    /* Ajustes de contraste para tema oscuro */
+    #start-btn {
+        background-image: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    }
+    
+    #reset-btn {
+        background-image: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary-color) 100%);
+    }
+    
+    #upload-btn {
+        background-image: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .background-element {
+            animation: none !important;
+        }
+    }
+}

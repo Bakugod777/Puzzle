@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Rompecabezas</title>
+    <link rel="stylesheet" href="/css/puzzle.css" />
+</head>
+<body>
+    <h1>Rompecabezas</h1>
+    <div class="timer" id="timer">00:00</div>
+    <div class="difficulty-selector">
+        <label for="puzzle-size">Dificultad: </label>
+        <select id="puzzle-size">
+            <option value="3">3x3 (Fácil)</option>
+            <option value="4" selected>4x4 (Normal)</option>
+            <option value="5">5x5 (Difícil)</option>
+            <option value="6">6x6 (Experto)</option>
+            <option value="7">7x7 (Maestro)</option>
+        </select>
+    </div>
+    <div class="controls">
+        <button id="start-btn">Iniciar Juego</button>
+        <button id="reset-btn">Reiniciar</button>
+        <input type="file" id="image-upload" accept="image/*" style="display:none">
+        <button id="upload-btn">Subir Imagen</button>
+    </div>
+    <div class="container">
+        <div class="puzzle-board" id="puzzle-board"></div>
+        <div class="pieces-container" id="pieces-container"></div>
+    </div>
+    <div class="message" id="success-message">¡Felicidades! Has completado el rompecabezas.</div>
+    <script src="/js/puzzle.js"></script>
+</body>
+</html>
